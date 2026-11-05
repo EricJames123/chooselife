@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>1 in 100 Billion — The Existential &amp; Historical Lottery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & TOKENS
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#08090b;
+  --bg2:#0d0f13;
+  --panel:#111419;
+  --panel2:#171b22;
+  --border:#232830;
+  --border-soft:#1a1e25;
+  --text:#e7e4de;
+  --muted:#8b9099;
+  --muted-dim:#5e636c;
+  --gold:#c9a961;
+  --gold-dim:#8a7440;
+  --red:#c06a5e;
+  --green:#79a883;
+  --blue:#8799c9;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(201,169,97,.07), transparent 65%),
+    radial-gradient(ellipse 700px 400px at 90% 110%, rgba(135,153,201,.05), transparent 65%);
+  background-attachment:fixed;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+::selection{background:rgba(201,169,97,.28);color:#fff}
+
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#252a33;border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:#333a45}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.screen{display:none;min-height:100vh;padding:44px 20px 90px}
+.screen.active{display:block;animation:screenIn .55s cubic-bezier(.2,.7,.3,1) both}
+@keyframes screenIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.wrap{max-width:820px;margin:0 auto}
+.wrap-wide{max-width:1020px;margin:0 auto}
+
+.eyebrow{
+  font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  font-family:var(--sans);
+  font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 34px;border-radius:999px;border:1px solid transparent;
+  cursor:pointer;transition:all .25s cubic-bezier(.2,.7,.3,1);
+  background:transparent;color:var(--text);
+  -webkit-tap-highlight-color:transparent;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-primary{
+  background:linear-gradient(180deg,#d8b972,#b8964c);
+  color:#14100a;border-color:#e0c684;
+  box-shadow:0 10px 34px -14px rgba(201,169,97,.85);
+}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 40px -14px rgba(201,169,97,1);filter:brightness(1.06)}
+.btn-primary:active:not(:disabled){transform:translateY(0)}
+.btn-primary:disabled{opacity:.32;cursor:not-allowed;box-shadow:none;filter:grayscale(.5)}
+
+.btn-ghost{
+  border-color:var(--border);color:var(--muted);
+  background:var(--panel);
+}
+.btn-ghost:hover{border-color:var(--gold-dim);color:var(--text)}
+
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.btn-sub{
+  font-size:11px;font-weight:500;letter-spacing:.05em;
+  text-transform:none;opacity:.55;
+}
+
+/* ============================================================
+   HERO / SELECT SCREEN
+   ============================================================ */
+.hero{text-align:center;padding:20px 0 8px}
+
+.hero h1{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(2.6rem,9vw,4.6rem);
+  line-height:.98;
+  letter-spacing:-.015em;
+  margin:18px 0 6px;
+  background:linear-gradient(180deg,#fff 10%,#d9d2c5 55%,#9a8f7b 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .amp{
+  display:block;font-size:.32em;letter-spacing:.22em;text-transform:uppercase;
+  font-family:var(--sans);font-weight:500;color:var(--gold);
+  margin-top:18px;opacity:.9;
+}
+.lede{
+  max-width:520px;margin:26px auto 0;
+  color:var(--muted);font-size:15px;line-height:1.75;font-weight:300;
+}
+.lede em{color:#b9bcc2;font-style:italic}
+
+/* Theme cards */
+.theme-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));
+  gap:16px;margin:48px 0 34px;
+}
+
+.theme-card{
+  position:relative;
+  background:linear-gradient(165deg,var(--panel) 0%,#0b0d11 100%);
+  border:1px solid var(--border);
+  border-radius:16px;
+  cursor:pointer;text-align:left;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),border-color .3s,box-shadow .3s;
+  overflow:hidden;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+.theme-card::before{
+  content:'';position:absolute;inset:0;border-radius:16px;
+  background:radial-gradient(400px 160px at 50% 0%, rgba(201,169,97,.14), transparent 70%);
+  opacity:0;transition:opacity .4s;pointer-events:none;z-index:1;
+}
+.theme-card:hover{transform:translateY(-3px);border-color:#3a3527}
+.theme-card:hover::before{opacity:1}
+.theme-card.selected{
+  border-color:var(--gold);
+  box-shadow:0 0 0 1px rgba(201,169,97,.55), 0 22px 60px -26px rgba(201,169,97,.6);
+}
+.theme-card.selected::before{opacity:1}
+
+.tc-cover{
+  height:110px;
+  background-size:cover;background-position:center;
+  background-color:#1a1d24;
+  position:relative;
+}
+.tc-cover::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(11,13,17,.05), rgba(11,13,17,.92));
+}
+.tc-body{padding:18px 22px 22px;position:relative}
+
+.tc-icon{font-size:24px;line-height:1;display:block;margin-bottom:10px;filter:saturate(.85)}
+.tc-year{
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:6px;
+}
+.tc-name{
+  font-family:var(--serif);font-size:1.38rem;font-weight:500;
+  line-height:1.2;margin-bottom:10px;color:#f0eee9;
+}
+.tc-desc{font-size:12.5px;color:var(--muted);line-height:1.6;font-weight:300;min-height:58px}
+.tc-traits{
+  margin-top:14px;padding-top:12px;border-top:1px solid var(--border-soft);
+  display:flex;flex-direction:column;gap:4px;
+}
+.tc-traits span{
+  font-size:10.5px;color:var(--muted-dim);letter-spacing:.05em;
+  display:flex;align-items:center;gap:7px;
+}
+.tc-traits span::before{
+  content:'';width:4px;height:4px;border-radius:50%;
+  background:var(--gold-dim);flex:0 0 auto;
+}
+
+.roll-bar{text-align:center;padding-bottom:20px}
+.roll-bar .hint{
+  margin-top:14px;font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted-dim);
+}
+
+/* Achievements shelf */
+.shelf{
+  margin-top:44px;padding-top:28px;border-top:1px solid var(--border-soft);
+  text-align:center;
+}
+.shelf-title{
+  font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--muted-dim);font-weight:600;margin-bottom:16px;
+}
+.badge-grid{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+}
+.badge{
+  font-size:11px;color:var(--muted);background:var(--panel);
+  border:1px solid var(--border);border-radius:999px;
+  padding:6px 12px;display:inline-flex;align-items:center;gap:6px;
+  transition:border-color .25s;
+}
+.badge.on{border-color:rgba(201,169,97,.4);color:var(--gold);background:rgba(201,169,97,.06)}
+.badge.off{opacity:.32;filter:grayscale(.7)}
+.badge .bi{font-size:12px}
+
+/* ============================================================
+   DRAW SCREEN
+   ============================================================ */
+.draw-head{text-align:center;margin-bottom:36px}
+.draw-head h2{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.2;
+  margin-top:14px;color:#f0eee9;
+}
+.draw-head p{color:var(--muted);font-size:13px;margin-top:12px;font-weight:300}
+
+.peer-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;margin-bottom:38px;
+}
+
+.peer{
+  background:linear-gradient(165deg,var(--panel),#0b0d11);
+  border:1px solid var(--border);border-radius:14px;
+  padding:20px 18px;position:relative;
+  animation:peerIn .5s cubic-bezier(.2,.7,.3,1) both;
+}
+@keyframes peerIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+
+.peer.you{
+  border-color:var(--gold);
+  background:linear-gradient(165deg,#1b1710,#0d0c09);
+  box-shadow:0 0 0 1px rgba(201,169,97,.4), 0 20px 60px -30px rgba(201,169,97,.8);
+}
+.peer-tag{
+  font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:700;color:var(--muted-dim);margin-bottom:12px;
+}
+.peer.you .peer-tag{color:var(--gold)}
+.peer-name{
+  font-family:var(--serif);font-size:1.22rem;font-weight:600;
+  color:#f2f0eb;line-height:1.25;margin-bottom:10px;
+}
+.peer-row{
+  display:flex;gap:8px;font-size:11.5px;color:var(--muted);
+  line-height:1.5;margin-bottom:5px;font-weight:300;
+}
+.peer-row b{color:#9aa0aa;font-weight:500;flex:0 0 46px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding-top:2px}
+.peer-row span{color:#c3c6cb;flex:1}
+
+.draw-actions{text-align:center}
+
+/* ============================================================
+   LIFE SCREEN
+   ============================================================ */
+.id-card{
+  background:linear-gradient(165deg,var(--panel),#0b0d11);
+  border:1px solid var(--border);border-radius:16px;
+  margin-bottom:14px;position:relative;overflow:hidden;
+  animation:screenIn .5s ease both;
+}
+.id-banner{
+  height:132px;
+  background-size:cover;background-position:center;
+  background-color:#1a1d24;
+  position:relative;
+}
+.id-banner::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(11,13,17,.15), rgba(11,13,17,.98));
+}
+.id-content{padding:18px 22px 22px;position:relative}
+.id-name{
+  font-family:var(--serif);font-size:1.6rem;font-weight:600;
+  color:#f5f2ec;line-height:1.15;letter-spacing:-.005em;
+}
+.id-origin{font-size:12.5px;color:var(--muted);margin-top:5px;font-weight:300}
+.id-meta{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;
+}
+.chip{
+  font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;
+  background:rgba(255,255,255,.035);border:1px solid var(--border);
+  color:#b3b7be;font-weight:500;
+}
+.chip.gold{border-color:rgba(201,169,97,.4);color:var(--gold);background:rgba(201,169,97,.07)}
+
+/* Dynamic event image */
+.event-image{
+  height:160px;border-radius:16px;
+  background-size:cover;background-position:center;
+  background-color:#161a21;
+  margin-bottom:14px;position:relative;overflow:hidden;
+  border:1px solid var(--border-soft);
+  opacity:0;transition:opacity .7s ease, background-image .5s ease;
+}
+.event-image.visible{opacity:1}
+.event-image::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(8,9,11,.15), rgba(8,9,11,.85));
+}
+.event-image .ei-caption{
+  position:absolute;bottom:12px;left:16px;right:16px;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(231,228,222,.65);font-weight:600;
+  z-index:2;
+}
+
+/* stats */
+.stat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;
+}
+.stat{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:12px 13px;
+  transition:border-color .3s;
+}
+.stat .label{
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted-dim);font-weight:600;margin-bottom:3px;
+}
+.stat .val{
+  font-family:var(--serif);font-size:1.5rem;font-weight:600;
+  line-height:1.1;color:#eeece7;
+}
+.stat .val small{font-size:.55em;color:var(--muted-dim);font-weight:400;margin-left:2px}
+.stat.hp .val{color:var(--green)}
+.stat.wl .val{color:var(--gold)}
+.stat.rp .val{color:var(--blue)}
+.stat.hp.low .val{color:var(--red)}
+
+.bar{
+  height:3px;border-radius:3px;background:#1d2129;margin-top:9px;overflow:hidden;
+}
+.bar > i{
+  display:block;height:100%;border-radius:3px;
+  transition:width .6s cubic-bezier(.2,.7,.3,1);
+  background:linear-gradient(90deg,#4f7a5c,#79a883);
+}
+.stat.wl .bar > i{background:linear-gradient(90deg,#7a6435,#c9a961)}
+.stat.rp .bar > i{background:linear-gradient(90deg,#4d5c80,#8799c9)}
+.stat.hp.low .bar > i{background:linear-gradient(90deg,#7d3f37,#c06a5e)}
+
+@media(max-width:560px){
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* chronicle */
+.chronicle-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:22px 0 12px;
+}
+.chronicle-head h3{
+  font-family:var(--serif);font-size:1.15rem;font-weight:500;color:#d8d5ce;
+  letter-spacing:.01em;
+}
+.chronicle-head .count{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-dim);
+}
+
+.chronicle{display:flex;flex-direction:column;gap:10px}
+
+.entry{
+  background:var(--panel);border:1px solid var(--border-soft);
+  border-left:2px solid var(--border);
+  border-radius:0 10px 10px 0;
+  padding:14px 16px;
+  animation:entryIn .45s cubic-bezier(.2,.7,.3,1) both;
+}
+@keyframes entryIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+
+.entry.death{border-left-color:var(--red);background:#160f0f}
+.entry.choice{border-left-color:var(--gold);background:#151208}
+.entry.miracle{border-left-color:var(--blue);background:#0d1017}
+.entry.jump{border-left-color:#3d4657;background:#0e1116}
+
+.entry-head{
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px;
+}
+.entry-age{
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-dim);font-weight:700;flex:0 0 auto;
+}
+.entry-title{
+  font-family:var(--serif);font-size:1.02rem;font-weight:600;color:#e9e6e0;
+  line-height:1.3;
+}
+.entry-text{font-size:12.8px;color:var(--muted);line-height:1.65;font-weight:300}
+
+.effects{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.eff{
+  font-size:9.5px;font-weight:600;letter-spacing:.08em;
+  padding:3px 8px;border-radius:5px;text-transform:uppercase;
+}
+.eff.pos{background:rgba(121,168,131,.12);color:#8fbd99}
+.eff.neg{background:rgba(192,106,94,.12);color:#d18278}
+.eff.neu{background:rgba(135,153,201,.12);color:#9aabd4}
+
+/* footer */
+.life-footer{
+  position:sticky;bottom:0;z-index:20;
+  margin-top:22px;padding:18px 0 max(18px,env(safe-area-inset-bottom));
+  display:flex;justify-content:center;
+  background:linear-gradient(to top,var(--bg) 30%,rgba(8,9,11,.85) 65%,transparent);
+}
+
+/* ============================================================
+   MODALS
+   ============================================================ */
+.overlay{
+  position:fixed;inset:0;z-index:100;
+  display:none;align-items:center;justify-content:center;
+  padding:22px;
+  background:rgba(4,5,7,.82);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  overflow-y:auto;
+}
+.overlay.show{display:flex;animation:ovIn .3s ease both}
+@keyframes ovIn{from{opacity:0}to{opacity:1}}
+
+.modal{
+  width:100%;max-width:520px;
+  background:linear-gradient(170deg,#141820,#0b0d11);
+  border:1px solid var(--border);border-radius:18px;
+  padding:34px 28px 28px;
+  animation:modalIn .42s cubic-bezier(.2,.7,.3,1) both;
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.9);
+  margin:auto;
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+
+.modal .eyebrow{margin-bottom:12px}
+.modal h3{
+  font-family:var(--serif);font-size:1.72rem;font-weight:500;
+  line-height:1.22;color:#f3f0ea;margin-bottom:14px;
+}
+.modal p{font-size:13.5px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:24px}
+
+.choice-btns{display:flex;flex-direction:column;gap:10px}
+
+.choice-btn{
+  text-align:left;padding:16px 18px;border-radius:12px;
+  background:var(--panel2);border:1px solid var(--border);
+  color:var(--text);cursor:pointer;
+  transition:all .22s cubic-bezier(.2,.7,.3,1);
+  font-family:var(--sans);font-size:13.5px;line-height:1.5;
+  -webkit-tap-highlight-color:transparent;
+}
+.choice-btn:hover{
+  border-color:var(--gold-dim);background:#1c2028;
+  transform:translateX(3px);
+}
+.choice-btn b{display:block;font-size:14px;color:#f0ede7;margin-bottom:3px;font-weight:600}
+.choice-btn span{font-size:11.5px;color:var(--muted-dim);font-weight:300}
+
+.choice-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* mercy modal */
+.mercy-art{
+  text-align:center;font-size:34px;margin-bottom:16px;
+  filter:drop-shadow(0 0 18px rgba(201,169,97,.45));
+  animation:pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+
+.mercy-actions{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+@media(min-width:460px){.mercy-actions{flex-direction:row}
+  .mercy-actions .btn{flex:1}}
+
+/* ============================================================
+   FUNERAL CARD
+   ============================================================ */
+.funeral{
+  width:100%;max-width:520px;margin:auto;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(201,169,97,.09), transparent 55%),
+    linear-gradient(175deg,#13161c 0%,#08090c 100%);
+  border:1px solid #2a2f38;
+  border-radius:20px;
+  padding:40px 28px 30px;
+  text-align:center;
+  position:relative;
+  animation:modalIn .6s cubic-bezier(.2,.7,.3,1) both;
+  box-shadow:0 50px 120px -40px rgba(0,0,0,1);
+  overflow:hidden;
+}
+.funeral::before{
+  content:'';position:absolute;inset:11px;border:1px solid rgba(201,169,97,.14);
+  border-radius:13px;pointer-events:none;
+}
+.funeral-cross{
+  font-size:22px;color:var(--gold);opacity:.85;margin-bottom:14px;
+  letter-spacing:.3em;
+}
+.funeral-eyebrow{
+  font-size:9.5px;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:18px;
+}
+.funeral-name{
+  font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.2rem);
+  font-weight:500;color:#f6f3ed;line-height:1.15;letter-spacing:-.01em;
+}
+.funeral-dates{
+  font-family:var(--serif);font-size:1.05rem;color:var(--muted);
+  margin-top:10px;letter-spacing:.06em;
+}
+.funeral-age{
+  font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-dim);margin-top:6px;font-weight:600;
+}
+
+.rule{
+  display:flex;align-items:center;gap:12px;margin:24px 0;
+}
+.rule::before,.rule::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.rule i{color:var(--gold-dim);font-style:normal;font-size:11px}
+
+.funeral-rows{display:flex;flex-direction:column;gap:0;text-align:left;margin-bottom:22px}
+.f-row{
+  display:flex;justify-content:space-between;gap:14px;
+  padding:9px 2px;border-bottom:1px solid #171b21;font-size:12.5px;
+}
+.f-row:last-child{border-bottom:none}
+.f-row .k{
+  font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted-dim);font-weight:600;flex:0 0 auto;padding-top:3px;
+}
+.f-row .v{color:#d5d2cb;text-align:right;font-weight:400;line-height:1.45}
+
+.funeral-quote{
+  font-family:var(--serif);font-style:italic;font-size:1.05rem;
+  color:#a9a49a;line-height:1.65;margin:6px 0 24px;font-weight:300;
+  padding:0 6px;
+}
+
+.pct-block{
+  background:rgba(201,169,97,.06);
+  border:1px solid rgba(201,169,97,.22);
+  border-radius:12px;padding:16px 16px 14px;margin-bottom:22px;
+}
+.pct-num{
+  font-family:var(--serif);font-size:2.1rem;font-weight:600;
+  color:var(--gold);line-height:1;
+}
+.pct-label{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted-dim);margin-top:8px;font-weight:600;
+}
+
+.peers-final{text-align:left;margin-bottom:22px}
+.peers-final .pf-title{
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--muted-dim);font-weight:600;margin-bottom:12px;text-align:center;
+}
+.pf-item{
+  display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+  padding:7px 0;border-bottom:1px solid #15181e;font-size:12px;
+}
+.pf-item:last-child{border-bottom:none}
+.pf-item .pf-n{color:#c8c5be;font-weight:500}
+.pf-item .pf-l{color:var(--muted-dim);font-size:11px;font-weight:300}
+.pf-item .pf-d{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold-dim);font-weight:600;flex:0 0 auto;
+}
+
+.unlocked-list{
+  text-align:left;margin-bottom:22px;
+  padding:14px 16px;border-radius:12px;
+  background:rgba(135,153,201,.05);
+  border:1px solid rgba(135,153,201,.18);
+}
+.unlocked-list .ul-title{
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:#9aabd4;font-weight:600;margin-bottom:10px;text-align:center;
+}
+.ul-item{
+  display:flex;gap:10px;align-items:flex-start;
+  padding:6px 0;font-size:11.5px;color:#b8bcc2;font-weight:300;
+}
+.ul-item .ui-icon{font-size:14px;line-height:1.4;flex:0 0 auto}
+.ul-item b{color:#e0dcd4;font-weight:600;font-size:12px;display:block;line-height:1.3}
+
+.funeral-foot{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted-dim);margin-bottom:18px;
+}
+
+.funeral-actions{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+
+.share-feedback{
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--green);font-weight:600;
+  margin-top:6px;opacity:0;transition:opacity .3s;
+  height:14px;
+}
+.share-feedback.show{opacity:1}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:600px){
+  .screen{padding:30px 16px 80px}
+  .theme-grid{grid-template-columns:1fr;gap:12px;margin:32px 0 26px}
+  .tc-desc{min-height:0}
+  .modal{padding:28px 20px 22px}
+  .funeral{padding:34px 20px 26px}
+  .id-content{padding:16px 18px 20px}
+  .id-banner{height:110px}
+  .event-image{height:130px}
+  .entry{padding:12px 14px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SCREEN 1 — THEME SELECT
+     ============================================================ -->
+<section class="screen active" id="screen-select">
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">The Existential &amp; Historical Lottery</div>
+      <h1>1 in 100 Billion</h1>
+      <div class="amp">You never asked to be born</div>
+      <p class="lede">
+        You drew a ticket in the dark and opened your eyes.
+        <em>Choose an era, and find out what kind of life the dice handed you.</em>
+      </p>
+    </header>
+
+    <div class="theme-grid" id="themeGrid"></div>
+
+    <div class="roll-bar">
+      <button class="btn btn-primary" id="btnRoll" disabled>Roll Your Destiny</button>
+      <p class="hint" id="rollHint">Select an era above</p>
+    </div>
+
+    <div class="shelf" id="shelf">
+      <div class="shelf-title">✦ Achievements Unlocked ✦</div>
+      <div class="badge-grid" id="badgeGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCREEN 2 — THE DRAW
+     ============================================================ -->
+<section class="screen" id="screen-draw">
+  <div class="wrap-wide">
+    <div class="draw-head">
+      <div class="eyebrow">The Draw</div>
+      <h2>In the same second, four lives began.</h2>
+      <p>Same planet. Same heartbeat of time. Three different fates.</p>
+    </div>
+    <div class="peer-grid" id="peerGrid"></div>
+    <div class="draw-actions">
+      <button class="btn btn-primary" id="btnBegin">Begin Life</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCREEN 3 — THE LIFE
+     ============================================================ -->
+<section class="screen" id="screen-life">
+  <div class="wrap">
+    <div class="id-card" id="idCard"></div>
+    <div class="event-image" id="eventImage"></div>
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div class="chronicle-head">
+      <h3>The Chronicle</h3>
+      <span class="count" id="chronCount">Year 0</span>
+    </div>
+    <div class="chronicle" id="chronicle"></div>
+
+    <div class="life-footer">
+      <button class="btn btn-primary" id="btnNext">Advance Time</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODAL — CHOICE
+     ============================================================ -->
+<div class="overlay" id="choiceModal">
+  <div class="modal">
+    <div class="eyebrow">A Fork in the Road</div>
+    <h3 id="choiceTitle"></h3>
+    <p id="choiceDesc"></p>
+    <div class="choice-btns" id="choiceBtns"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL — MERCY PASS
+     ============================================================ -->
+<div class="overlay" id="mercyModal">
+  <div class="modal" style="text-align:center">
+    <div class="mercy-art">✦</div>
+    <div class="eyebrow" style="justify-content:center">The Mercy Pass</div>
+    <h3>History was cruel.</h3>
+    <p>
+      Your thread was cut too early. But the loom is not always merciless.<br>
+      <span style="color:#8b9099">Watch a short clip / support us to trigger a miraculous recovery?</span>
+    </p>
+    <div class="mercy-actions">
+      <button class="btn btn-primary" id="btnMiracle">Trigger Miracle</button>
+      <button class="btn btn-ghost" id="btnAcceptFate">Accept Fate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL — FUNERAL CARD
+     ============================================================ -->
+<div class="overlay" id="deathModal">
+  <div class="funeral" id="deathCard"></div>
+</div>
+
+<script>
+/* ============================================================
+   0. UTILITIES
+   ============================================================ */
+const rand  = n => Math.floor(Math.random() * n);
+const pick  = arr => arr[rand(arr.length)];
+const clamp = (v, lo = 0, hi = 100) => Math.max(lo, Math.min(hi, v));
+
+function weightedPick(arr) {
+  const total = arr.reduce((s, o) => s + (o.w || 1), 0);
+  let r = Math.random() * total;
+  for (const o of arr) {
+    r -= (o.w || 1);
+    if (r <= 0) return o;
+  }
+  return arr[arr.length - 1];
+}
+
+function gaussRand() {
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+/* ============================================================
+   1. WORLD DATA
+   ============================================================ */
+
+const MODERN_COUNTRIES = [
+  { n: 'the United States', w: 4 },  { n: 'China', w: 8 },
+  { n: 'India', w: 9 },              { n: 'Indonesia', w: 5 },
+  { n: 'Nigeria', w: 5 },            { n: 'Brazil', w: 4 },
+  { n: 'Pakistan', w: 5 },           { n: 'Bangladesh', w: 4 },
+  { n: 'Russia', w: 3 },             { n: 'Mexico', w: 3 },
+  { n: 'Japan', w: 3 },              { n: 'Germany', w: 2 },
+  { n: 'the United Kingdom', w: 2 }, { n: 'France', w: 2 },
+  { n: 'Italy', w: 2 },              { n: 'Spain', w: 2 },
+  { n: 'Canada', w: 1 },             { n: 'Australia', w: 1 },
+  { n: 'South Korea', w: 2 },        { n: 'Vietnam', w: 3 },
+  { n: 'Egypt', w: 3 },              { n: 'Ethiopia', w: 3 },
+  { n: 'the Philippines', w: 3 },    { n: 'Turkey', w: 3 },
+  { n: 'Iran', w: 2 },               { n: 'Thailand', w: 2 },
+  { n: 'South Africa', w: 2 },       { n: 'Kenya', w: 2 },
+  { n: 'Colombia', w: 2 },           { n: 'Argentina', w: 2 },
+  { n: 'Poland', w: 2 },             { n: 'Ukraine', w: 2 },
+  { n: 'Morocco', w: 2 },            { n: 'Saudi Arabia', w: 2 },
+  { n: 'Sweden', w: 1 },             { n: 'Norway', w: 1 },
+  { n: 'the Netherlands', w: 1 },    { n: 'Switzerland', w: 1 },
+  { n: 'Peru', w: 2 },               { n: 'Chile', w: 2 },
+  { n: 'Myanmar', w: 2 },            { n: 'Afghanistan', w: 2 },
+  { n: 'Iraq', w: 2 },               { n: 'Sudan', w: 2 },
+  { n: 'Nepal', w: 2 },              { n: 'Ghana', w: 2 },
+  { n: 'Tanzania', w: 2 },           { n: 'Uganda', w: 2 }
+];
+
+const THEMES = {
+
+  /* ==========================================================
+     THEME A — MEDIEVAL DARK AGES (1348)
+     ========================================================== */
+  medieval: {
+    id: 'medieval',
+    icon: '🗡️',
+    name: 'Medieval Dark Ages',
+    year: '1348 AD',
+    tagline: 'The Black Death walks the roads.',
+    desc: 'The manor owns your body and the Church owns your soul. Plague ships have docked in the south, and the fields are full of graves.',
+    traits: ['Infant mortality ≈ 45%', 'Life ceiling ≈ 50 years', 'Serf · Knight · Plague victim'],
+    startHealth: 84,
+    maxAge: 50,
+    seniorThreshold: 36,
+    mortality: { infant: 0.062, child: 0.022, youth: 0.011, adult: 0.016 },
+    medianAge: 28,
+    spread: 11,
+    images: {
+      cover: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=900&q=80&fit=crop&auto=format',
+      events: [
+        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80&fit=crop&auto=format'
+      ]
+    },
+    locations: ['England', 'France', 'Castile', 'the Holy Roman Empire',
+                'the Papal States', 'Denmark', 'Poland', 'Scotland',
+                'Aragon', 'Flanders'],
+    names: {
+      male:   ['Godwin','Aelfric','Wat','Hugh','Geoffrey','Ralf','Osbert','Leofric','Anselm','Bertram'],
+      female: ['Alys','Maud','Edith','Isolde','Joan','Agnes','Cecily','Margery','Aveline','Sybil'],
+      surname:['atte Welle','the Smith','of Kent','FitzAlan','the Miller','de Grey','of the Green','Blackthorn','Waryn','Cole']
+    },
+    origins: [
+      { label: "Serf's child on a manor",        w: 34, status: 'Serf',             wealth:  4, rep:  4 },
+      { label: "Blacksmith's child",             w: 12, status: 'Free Townsfolk',   wealth: 12, rep: 10 },
+      { label: "Merchant's child",               w: 10, status: 'Merchant Class',   wealth: 26, rep: 18 },
+      { label: "Priest's bastard",               w:  9, status: 'Ward of the Church',wealth:  8, rep: 12 },
+      { label: "Fourth son of a minor knight",   w:  9, status: 'Minor Nobility',   wealth: 30, rep: 34 },
+      { label: "Abbey orphan",                   w: 10, status: 'Orphan',           wealth:  2, rep:  6 },
+      { label: "Heir of a landed lord",          w:  3, status: 'Nobility',         wealth: 78, rep: 62 },
+      { label: "Child of a camp follower",       w:  8, status: 'Camp Follower',    wealth:  3, rep:  2 },
+      { label: "Miller's child",                 w:  5, status: 'Villein',          wealth:  7, rep:  6 }
+    ],
+    pools: {
+      early: [
+        { t:'The Black Visitation', d:"A neighbour's door is painted with a red cross. By morning your mother is coughing blood, and the whole house burns with fever.", e:{ health:-22 } },
+        { t:'A Cold Winter', d:"The fire burns low. The last of the salted pork is gone. You survive on thin pottage and frozen fingers.", e:{ health:-12, wealth:-4 } },
+        { t:'The Wet Nurse', d:"Your mother has no milk. A neighbouring woman nurses you for a copper coin, and you thrive for another season.", e:{ health:+11, wealth:-2 } },
+        { t:'Rats in the Granary', d:"The manor's grain is fouled. The rats carry something worse than hunger, and half the village's infants do not see spring.", e:{ health:-18 } },
+        { t:"The Priest's Blessing", d:"The parish priest marks your forehead with holy water and prays over the fever. Whether by God or by luck, it breaks.", e:{ health:+9, rep:+4 } },
+        { t:'A Fall from the Cot', d:"You tumble from a stool into the hearth. The burn on your arm will scar for life.", e:{ health:-9 } },
+        { t:'Famine Bread', d:"The harvest failed again. You eat bread mixed with sawdust and bark. Your belly swells while your limbs grow thin.", e:{ health:-14, wealth:-3 } },
+        { t:'Lullabies in the Long Dark', d:"Your mother sings old songs by the rushlight. You sleep safe. For one more year the world is warm.", e:{ health:+8, rep:+2 } }
+      ],
+      growth: [
+        { t:"The Lord's Field", d:"You are old enough to work. From dawn to dusk you bend over the manor's soil for a bowl of pottage and a roof.", e:{ health:-8, wealth:+4 } },
+        { t:'Letters at the Abbey', d:"The monks let you sit at the back of the scriptorium. You learn your letters — a strange and dangerous gift for a peasant.", e:{ rep:+13, wealth:+2 } },
+        { t:'Apprenticed to the Smith', d:"Your hands blister and blacken. But iron is a trade, and trades outlive lords.", e:{ health:-6, wealth:+10, rep:+5 } },
+        { t:'The Plague Returns', d:"A second wave. The carts roll through the village again, piled with bodies. You hide in the byre and pray.", e:{ health:-20 } },
+        { t:'Learning the Bow', d:"The village men drill with longbows by order of the crown. By nine years old you can pull a string.", e:{ health:+4, rep:+7 } },
+        { t:'The Tithe Collector', d:"The Church takes a tenth of everything, and the lord takes his share. Your family is left with crumbs.", e:{ wealth:-6 } },
+        { t:'A Cutpurse in the Market', d:"You watch a boy your age take a purse and vanish into the crowd. You say nothing. You remember his face.", e:{ rep:-3, wealth:+3 } },
+        { t:'Sent Away from the Manor', d:"There are too many mouths at the table. Nobody asks where you go, and nobody waves goodbye.", e:{ health:-8, rep:-6 } }
+      ],
+      prime: [
+        { t:'A Year of Good Harvest', d:"The granary is full for the first time in memory. The village eats, dances, and forgets the plague for a season.", e:{ health:+8, wealth:+11 } },
+        { t:'The Flagellant Procession', d:"Whip-carrying penitents march through town, flogging themselves for the sins of the world. Some say they carry the plague with them.", e:{ rep:+6, health:-8 } },
+        { t:"A Daughter's Dowry", d:"A match is made. The dowry costs you a cow and two years of savings.", e:{ wealth:-12, rep:+7 } },
+        { t:'The Black Death Arrives', d:"The pestilence reaches your town walls. It takes the baker, the priest, and half the street before the month is out.", e:{ health:-28 } },
+        { t:"The Witch's Accusation", d:"A neighbour whispers that your grandmother cured a fever with herbs. The bailiff comes with questions and a rope.", e:{ rep:-16, health:-10 } },
+        { t:"The Merchant's Caravan", d:"You carry wool and salt to the next town and sell at a fair price. Fortune smiles, briefly.", e:{ wealth:+17, health:-4 } },
+        { t:'A Broken Bone', d:"A fall from a cart. The bone-setter is drunk. It mends crooked and aches in the rain ever after.", e:{ health:-13 } },
+        { t:'Respected in the Village', d:"You settle a boundary dispute between two families. People begin asking your opinion on things that matter.", e:{ rep:+14, wealth:+4 } }
+      ],
+      elder: [
+        { t:'The Winter Ache', d:"Your joints swell when the frost comes. The herb-woman says there is nothing to be done but wait for spring.", e:{ health:-11 } },
+        { t:'Grandchildren at the Door', d:"Small feet, loud voices, mud on the floor. The house is full again.", e:{ health:+4, rep:+9 } },
+        { t:"The Lord's New Tax", d:"A new levy for a war nobody in the village will ever see. You pay it, or you lose the cow.", e:{ wealth:-11 } },
+        { t:'The Sweating Sickness', d:"A strange new illness moves faster than the plague. Men die between dinner and supper.", e:{ health:-20 } },
+        { t:'A Quiet Year', d:"No plague, no war, no tax. The barley comes in. The pigs are fat. You almost forget to be afraid.", e:{ health:+8, wealth:+6 } },
+        { t:'Village Elder', d:"You are the oldest face in the church on Sunday. People cross the road to ask for your blessing.", e:{ rep:+13 } },
+        { t:'The Church Bell', d:"You count the bell tolls for neighbours now. It tolls more often than it does not.", e:{ health:-8, rep:+3 } }
+      ]
+    },
+    choices: [
+      {
+        age: 16, t: 'The Manor or the Road?',
+        d: "You are strong enough to work a full day. The steward offers you a plot of land and a lifetime of service. A tinker passing through says the cities have no lords — only walls, and walls can be climbed.",
+        a: { label: 'Stay on the manor', sub: 'Certain bread, certain chains', e: { wealth:+4, health:-6, rep:+2 }, status: 'Serf',
+             r: "You stay. The land owns you as much as you own it. There is comfort in the certainty." },
+        b: { label: 'Slip away to the city', sub: '"City air makes free"', e: { wealth:+12, health:-10, rep:+6 }, status: 'Free Townsfolk',
+             r: "You leave at dawn with nothing but your boots. A year later you are a stranger in a city of strangers — but no man's property." }
+      },
+      {
+        age: 20, t: "The Crusader's Banner",
+        d: "A recruiting friar preaches in the square, promising remission of sins and spoils in the East. Your family has never owned anything worth stealing. The banner is red and gold and very beautiful.",
+        a: { label: 'Take up the cross', sub: 'Glory, spoils, and a long march', e: { rep:+21, health:-22, wealth:+7 },
+             r: "You march. You see cities that make your village look like a stain. You come back thinner, quieter, and with a scar you never explain." },
+        b: { label: 'Stay with the harvest', sub: 'The wheat will not wait', e: { health:+6, wealth:+5, rep:-4 },
+             r: "You stay. The wheat comes in. Nobody sings songs about men who bring in the wheat." }
+      },
+      {
+        age: 25, t: "The Miller's Widow",
+        d: "She has a mill, two cows, and a dead husband. She also has a temper that the whole parish talks about. Her offer is plain: marriage, security, and a share of the flour trade.",
+        a: { label: 'Marry her', sub: 'Safety has a price', e: { wealth:+19, rep:+6, health:-4 },
+             r: "You marry. The mill grinds steadily. So does she. You are fed, warm, and never once bored." },
+        b: { label: 'Walk on alone', sub: 'Freedom, and an empty belly', e: { health:+6, wealth:-4, rep:-5 },
+             r: "You refuse. You keep your freedom and your hunger. Some nights you wonder which was the better bargain." }
+      },
+      {
+        age: 30, t: 'The Plague Doctor',
+        d: "The sickness has returned and the town has no one. The aldermen offer a purse to anyone willing to tend the sick. The doors of the infected are marked in red.",
+        a: { label: 'Tend the dying', sub: 'A purse, and the breath of pestilence', e: { rep:+22, health:-26, wealth:+8 },
+             r: "You wash the dying and close their eyes. The town will remember your name for a hundred years. You will not live to hear it." },
+        b: { label: 'Bar the door', sub: 'Survive, and be called a coward', e: { health:+9, rep:-8, wealth:-4 },
+             r: "You bolt the shutters and burn herbs. You live. When it is over, the neighbours do not meet your eye." }
+      },
+      {
+        age: 35, t: 'The Pilgrimage',
+        d: "A relic has been displayed at a cathedral three hundred miles away. Pilgrims say it cures the body and cleanses the soul. The road is long, the inns are full of thieves, and your bones already ache.",
+        a: { label: 'Make the pilgrimage', sub: 'Faith, blisters, and three hundred miles', e: { rep:+18, health:-12, wealth:-13 },
+             r: "You walk. You kneel on cold stone and weep for reasons you cannot name. You return changed, and considerably poorer." },
+        b: { label: 'Stay by your own hearth', sub: 'There is enough holiness in a warm fire', e: { wealth:+7, health:+4 },
+             r: "You stay. You pray at home, quietly, and find it no less sincere for being close to the fire." }
+      }
+    ]
+  },
+
+  /* ==========================================================
+     THEME B — VICTORIAN & REGENCY (1850)
+     ========================================================== */
+  victorian: {
+    id: 'victorian',
+    icon: '🎩',
+    name: 'Victorian &amp; Regency Era',
+    year: '1850 AD',
+    tagline: 'Smoke, silk, and consumption.',
+    desc: 'The Empire is at its zenith and the fog is full of coal. Ballrooms glitter upstairs while children haul coal downstairs. Manners are everything, and everything is for sale.',
+    traits: ['Cholera &amp; consumption', 'Rigid class ceilings', 'Life ceiling ≈ 70 years'],
+    startHealth: 90,
+    maxAge: 70,
+    seniorThreshold: 56,
+    mortality: { infant: 0.045, child: 0.016, youth: 0.009, adult: 0.013 },
+    medianAge: 46,
+    spread: 14,
+    images: {
+      cover: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80&fit=crop&auto=format',
+      events: [
+        'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900&q=80&fit=crop&auto=format'
+      ]
+    },
+    locations: ['London', 'Manchester', 'Leeds', 'Bristol', 'Edinburgh',
+                'Glasgow', 'Dublin', 'Bath', 'York', 'Liverpool'],
+    names: {
+      male:   ['Arthur','Edward','Charles','William','Thomas','Henry','George','Alfred','Frederick','Rupert'],
+      female: ['Eleanor','Charlotte','Agnes','Beatrice','Clara','Harriet','Amelia','Rose','Victoria','Florence'],
+      surname:['Whitmore','Ashcroft','Pemberton','Hale','Blackwood','Fairfax','Hargreaves','Bramley','Sinclair','Thornton']
+    },
+    origins: [
+      { label: 'Mill child of Manchester',      w: 30, status: 'Industrial Poor',    wealth:  3, rep:  3 },
+      { label: 'Daughter of a tenant farmer',   w: 14, status: 'Rural Poor',         wealth:  4, rep:  5 },
+      { label: "Clerk's child of London",       w: 13, status: 'Lower Middle Class', wealth: 14, rep: 14 },
+      { label: 'Son of a shop merchant',        w: 11, status: 'Middle Class',       wealth: 32, rep: 26 },
+      { label: "Vicar's child",                 w:  9, status: 'Clergy',             wealth: 18, rep: 32 },
+      { label: 'Child of the landed gentry',    w:  8, status: 'Gentry',             wealth: 58, rep: 52 },
+      { label: 'Youngest of an aristocratic house', w: 5, status: 'Aristocracy',     wealth: 82, rep: 72 },
+      { label: 'Workhouse orphan',              w: 10, status: 'Ward of the Parish', wealth:  0, rep:  2 }
+    ],
+    pools: {
+      early: [
+        { t: 'Cholera in the Court', d: "The pump on Broad Street runs foul. Within a week, three families in your court have lost a child.", e: { health:-24 } },
+        { t: 'The Workhouse Door', d: "Your father cannot find work. The parish board separates the family into wings — men, women, children.", e: { health:-12, wealth:-3, rep:-5 } },
+        { t: 'A Warm Hearth', d: "Coal is dear this winter, but your mother keeps the fire in all night. You sleep without shivering.", e: { health:+7 } },
+        { t: 'Consumption in the Walls', d: "Your aunt coughs into a handkerchief and hides the blood. She kisses your forehead anyway.", e: { health:-20 } },
+        { t: "The Governess's Care", d: "A governess with cold hands and a kind voice teaches you to sit straight and speak softly.", e: { health:+6, rep:+5 } },
+        { t: 'The Fog and the Cough', d: "The November fog is the colour of peas and tastes of soot. Your chest rattles for weeks.", e: { health:-11 } },
+        { t: "A Blessing at St. Paul's", d: "You are carried up the great steps in your christening gown, and the whole congregation pretends not to notice the smell of the street.", e: { rep:+6 } },
+        { t: "Winter Without Wages", d: "Your father works six days a week and still the rent is short. The landlady's knock comes every Friday.", e: { wealth:-6, health:-6 } }
+      ],
+      growth: [
+        { t: 'Down the Pit', d: "At seven you are given a lamp and a place in the dark. You are small enough to reach where grown men cannot.", e: { health:-16, wealth:+6 } },
+        { t: 'The Mill at Six', d: "The bell rings at five. You tie the threads that snap, and the machines never stop, and neither do you.", e: { health:-13, wealth:+7 } },
+        { t: 'Latin and Piano', d: "Your parents pay for a tutor. You learn to conjugate, to bow, and to never let your accent slip.", e: { rep:+13, wealth:-6 } },
+        { t: "The Chimney Sweep's Boy", d: "You climb the flues for a master who swears at you. Your knees never quite heal.", e: { health:-18, wealth:+4 } },
+        { t: 'A Scholarship', d: "You sit the examination in a cold hall and your name appears, improbably, on the list.", e: { rep:+16, wealth:+4 } },
+        { t: 'The Ragged School', d: "A charity school in a converted stable. The Bible is the only book, but it is still a book.", e: { rep:+6, health:-3 } },
+        { t: 'Scarlet Fever', d: "The rash starts on your chest and spreads like a map of a country you have never visited.", e: { health:-21 } },
+        { t: 'The Family Shop', d: "You learn to weigh tea and count change before you can spell your own name.", e: { wealth:+9, rep:+4 } }
+      ],
+      prime: [
+        { t: "The Season's Ball", d: "A ballroom of candlelight and careful conversation. Your name is mentioned twice in the right company.", e: { rep:+14, wealth:-9 } },
+        { t: 'A Suitable Match', d: "The arrangements are made between fathers over port. You are informed of your good fortune.", e: { wealth:+23, rep:+12 } },
+        { t: 'The Crystal Palace', d: "You walk through glass halls filled with the machinery of the world. For an afternoon, the future looks generous.", e: { rep:+9, wealth:-5 } },
+        { t: 'A Letter from the Colonies', d: "An uncle in Calcutta has died and remembered you in his will. The money is dirty and desperately welcome.", e: { wealth:+15, health:-4 } },
+        { t: 'Consumption Sets In', d: "The cough that began in autumn is still here in spring. There is a spot of blood on the pillow.", e: { health:-30 } },
+        { t: 'The Chartist Rally', d: "Ten thousand men march for the vote. You are one of them, and the police are counting heads.", e: { rep:+9, health:-6 } },
+        { t: 'Scandal in the Drawing Room', d: "A letter is read aloud at the wrong dinner party. Your name is ruined in three counties by Tuesday.", e: { rep:-18 } },
+        { t: 'The Factory Floor', d: "You take a position at the mill, twelve hours a day, and the wage buys a slightly better class of hunger.", e: { wealth:+11, health:-12 } }
+      ],
+      elder: [
+        { t: 'The Gout', d: "Your foot swells and the doctor prescribes port, which seems to make everything worse and more bearable.", e: { health:-10, rep:+3 } },
+        { t: 'Retirement to Bath', d: "You take rooms in Bath and drink the waters on the advice of everyone. The company is excellent.", e: { health:+8, wealth:-12 } },
+        { t: "The Widow's Weeds", d: "You wear black for a year and find that grief and dignity look very much alike from the outside.", e: { health:-8, rep:+3 } },
+        { t: "A Grandchild's Wedding", d: "You are helped into the front pew and everyone says how well you look. You are not sure that you do.", e: { rep:+10, health:+4 } },
+        { t: 'The Exhibition Legacy', d: "An investment made years ago on a whim returns a tidy sum at precisely the right moment.", e: { wealth:+13 } },
+        { t: 'Winter Consumption', d: "The winter settles in your lungs and does not leave when the spring comes.", e: { health:-19 } },
+        { t: 'The Armchair by the Fire', d: "There is a chair, a rug, a dog, and a view of the garden. It is, by any measure, enough.", e: { health:+6, rep:+5 } }
+      ]
+    },
+    choices: [
+      {
+        age: 16, t: 'The Factory or the Seminary?',
+        d: "The mill has a place for you at the machines, starting Monday. The seminary has a place for you too, if you can bear the Latin and the cold dormitory.",
+        a: { label: 'Take the wage', sub: 'Money now, lungs later', e: { wealth:+10, health:-12 },
+             r: "You take the wage. The machine takes the years. You can count your money, but not the hours." },
+        b: { label: 'Take the cloth', sub: 'Poverty with a future', e: { rep:+16, wealth:-4, health:+3 },
+             r: "You take the cloth. The dormitory is freezing and the Latin is endless, but doors are opening that you cannot yet see." }
+      },
+      {
+        age: 20, t: 'A Proposal of Marriage',
+        d: "A family of means has made an approach. The match is sensible, the house is large, and you have met the intended exactly twice.",
+        a: { label: 'Accept the arrangement', sub: 'Security, respect, and a stranger', e: { wealth:+25, rep:+11, health:-3 },
+             r: "You accept. The wedding is beautiful. The marriage becomes, over decades, something like affection." },
+        b: { label: 'Refuse and keep your independence', sub: 'Scandal, and a smaller room', e: { wealth:-6, rep:-9, health:+6 },
+             r: "You refuse. The aunts are inconsolable, the suitor is insulted, and your own small life is entirely your own." }
+      },
+      {
+        age: 25, t: 'The Colonial Venture',
+        d: "A firm in the City offers you a post abroad — India, or perhaps the Cape. The pay is extraordinary. The fevers are also extraordinary.",
+        a: { label: 'Take ship', sub: 'A fortune, and foreign disease', e: { wealth:+28, health:-20, rep:+7 },
+             r: "You sail. You come home ten years later with money, a limp, and a way of looking at the horizon that never quite leaves you." },
+        b: { label: 'Stay in London', sub: 'Rain, but familiar rain', e: { health:+7, wealth:+4 },
+             r: "You stay. The fog is dreadful and the rent is worse, but you know every street and every face on it." }
+      },
+      {
+        age: 30, t: "The Reformer's Cause",
+        d: "A group of radicals is organising for the vote, for the ten-hour day, for the children in the pits. They need names, money, and someone willing to be seen.",
+        a: { label: 'Join the cause', sub: 'Be seen, be useful, be watched', e: { rep:+21, health:-9, wealth:-7 },
+             r: "You join. You are heckled, followed, and once arrested. Years later, a stranger will tell you that your speech changed his mind." },
+        b: { label: 'Keep to a respectable life', sub: 'Comfort, and a quiet conscience', e: { wealth:+13, rep:+3 },
+             r: "You keep your head down. Nothing bad happens to you. Nothing good happens either, and you notice." }
+      },
+      {
+        age: 35, t: 'The Family Estate',
+        d: "A distant relative has died and left you a country house, a great deal of land, and an obligation to the tenants who live on it.",
+        a: { label: 'Accept the estate', sub: 'Wealth, duty, and draughty corridors', e: { wealth:+25, rep:+11, health:-4 },
+             r: "You accept. The house is cold and enormous, and the tenants' children learn your name before they learn their letters." },
+        b: { label: 'Give it to the church', sub: 'A soul is heavier than an acreage', e: { rep:+22, wealth:-14 },
+             r: "You sign it over. The vicar calls you a saint; your cousins call you a fool. Both of them write to you for money." }
+      }
+    ]
+  },
+
+  /* ==========================================================
+     THEME C — PURE EXISTENTIAL LOTTERY (MODERN DAY)
+     ========================================================== */
+  modern: {
+    id: 'modern',
+    icon: '🌍',
+    name: 'Pure Existential Lottery',
+    year: 'Modern Day',
+    tagline: 'One of 172 countries. Pure chance.',
+    desc: 'Eight billion people are alive today. You are about to become one of them, somewhere on this planet, in circumstances you did not choose.',
+    traits: ['Real global distribution', '8 billion competitors', 'Life ceiling ≈ 85 years'],
+    startHealth: 96,
+    maxAge: 85,
+    seniorThreshold: 72,
+    mortality: { infant: 0.006, child: 0.0015, youth: 0.001, adult: 0.002 },
+    medianAge: 78,
+    spread: 13,
+    images: {
+      cover: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80&fit=crop&auto=format',
+      events: [
+        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=900&q=80&fit=crop&auto=format',
+        'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900&q=80&fit=crop&auto=format'
+      ]
+    },
+    locations: [],
+    names: {
+      male:   ['Liam','Mateo','Arjun','Kenji','Omar','Kwame','Diego','Noah','Ivan','Wei','Rafael','Tariq'],
+      female: ['Sofia','Aisha','Yuki','Priya','Amara','Elena','Mei','Fatima','Isabel','Nadia','Leila','Ana'],
+      surname:['Garcia','Okafor','Nakamura','Singh','Silva','Kim','Haddad','Mensah','Rossi','Nguyen','Kowalski','Ibrahim']
+    },
+    origins: [
+      { label: 'Child of a rural smallholder',        w: 22, status: 'Rural Poor',          wealth:  8, rep:  8 },
+      { label: 'Child of a warehouse worker',         w: 20, status: 'Urban Working Class',  wealth: 18, rep: 14 },
+      { label: 'Child of a teacher and a nurse',      w: 22, status: 'Middle Class',         wealth: 38, rep: 30 },
+      { label: 'Child of a small business owner',     w: 14, status: 'Lower Middle Class',   wealth: 32, rep: 24 },
+      { label: 'Child of a corporate executive',      w:  8, status: 'Upper Middle Class',   wealth: 62, rep: 46 },
+      { label: 'Child of a billionaire dynasty',      w:  1, status: 'Elite',                wealth: 95, rep: 70 },
+      { label: 'Child of refugees',                   w:  7, status: 'Displaced',            wealth:  2, rep:  4 },
+      { label: 'Child of a single parent',            w:  6, status: 'Working Poor',         wealth: 12, rep: 10 }
+    ],
+    pools: {
+      early: [
+        { t: 'Vaccination Day', d: "A nurse with a cold stethoscope and a warm smile. You scream, then you are immune to something that used to kill children.", e: { health:+9 } },
+        { t: 'A Fever at Midnight', d: "Your parents drive through empty streets to a bright hospital. Fluids, a cold cloth, and eight hours of waiting.", e: { health:-14, wealth:-3 } },
+        { t: 'The Daycare Years', d: "You learn to share, to shout, and to sleep through noise. The world is already very loud.", e: { rep:+4, wealth:-3 } },
+        { t: 'A Fall from the Slide', d: "You land badly on your wrist. The cast is bright blue and everyone signs it.", e: { health:-9, wealth:-2 } },
+        { t: "Parents' Long Shift", d: "They work double shifts and you learn to make your own dinner earlier than you should.", e: { health:-5, wealth:+4 } },
+        { t: 'The Flood', d: "Water comes through the door at night. You lose the photographs and the furniture and the sense that home is permanent.", e: { health:-11, wealth:-7 } },
+        { t: "Grandmother's Kitchen", d: "There is always something on the stove and always room for you at the table.", e: { health:+6, rep:+3 } },
+        { t: 'Too Much Screen', d: "The tablet glows in the dark of your room long after you should be asleep.", e: { health:-4 } }
+      ],
+      growth: [
+        { t: 'The School Test', d: "You sit an exam that adults treat as the most important morning of your life. You do well.", e: { rep:+11 } },
+        { t: 'Bullying in the Corridor', d: "Three of them, between the lockers and the fire exit. Nobody says anything. You remember who said nothing.", e: { health:-8, rep:-6 } },
+        { t: 'A Talent for Music', d: "A teacher lends you an instrument and something in your chest opens that had been closed.", e: { rep:+13, wealth:-3 } },
+        { t: 'The Family Moves', d: "New town, new school, new accent to imitate. You leave behind the only friend you had.", e: { rep:-4, health:-3 } },
+        { t: 'First Phone', d: "A small rectangle of light that will shape the next decade of your attention.", e: { rep:+6, wealth:-3 } },
+        { t: 'A Broken Arm', d: "Football, a bad landing, six weeks in a cast and a summer wasted.", e: { health:-10, wealth:-2 } },
+        { t: 'The Scholarship Exam', d: "You sit it in a hall full of confident strangers, and your name comes back near the top.", e: { rep:+16, wealth:+5 } },
+        { t: 'The Lonely Year', d: "Something in your head goes quiet and grey. You get through it, but you do not talk about it.", e: { health:-7, rep:-4 } }
+      ],
+      prime: [
+        { t: 'The University Letter', d: "A thick envelope, a very large number, and a doorway that opens only if you are willing to owe.", e: { rep:+15, wealth:-10 } },
+        { t: 'First Real Job', d: "A desk, a badge, a salary that feels like a fortune and vanishes by the twentieth of the month.", e: { wealth:+16, health:-4 } },
+        { t: 'The Breakup', d: "Two years, a shared flat, and one sentence in a kitchen at midnight.", e: { health:-6, rep:-2 } },
+        { t: 'The Accident', d: "A junction, a red light, the sound of metal folding. You wake up in a hospital with a stranger holding your hand.", e: { health:-24, wealth:-8 } },
+        { t: 'Burnout', d: "You notice you have stopped feeling anything about the thing you used to love. Then you notice you cannot sleep.", e: { health:-13, wealth:+6 } },
+        { t: 'The Promotion', d: "A larger desk, a smaller calendar, and the strange pleasure of being needed.", e: { wealth:+20, rep:+11 } },
+        { t: 'A Global Pandemic', d: "The world closes its doors. You learn the shape of your own four walls very well indeed.", e: { health:-15, wealth:-9 } },
+        { t: 'The Startup', d: "Eleven-hour days, terrible coffee, and the genuine possibility that this might work.", e: { wealth:+9, health:-11, rep:+6 } },
+        { t: 'The Quiet Years', d: "Nothing dramatic happens for a while. You cook, you walk, you sleep. It is better than it sounds.", e: { health:+7, rep:+4 } }
+      ],
+      elder: [
+        { t: 'The Mortgage', d: "Thirty years of monthly payments in exchange for a roof that is finally, technically, yours.", e: { wealth:-10, rep:+4 } },
+        { t: 'A Diagnosis', d: "A doctor speaks slowly and uses words you will spend the rest of the day looking up.", e: { health:-20 } },
+        { t: 'The Family Grows', d: "A small person arrives who looks like an ancestor you barely remember. The room is very full.", e: { rep:+10, health:+2 } },
+        { t: 'The Midlife Question', d: "You wake at four in the morning and ask yourself, with genuine curiosity, whether you chose any of this.", e: { rep:+6, health:-3 } },
+        { t: 'The Gym Membership', d: "You start walking four miles a day. The doctor is pleased. Your knees have opinions.", e: { health:+9, wealth:-3 } },
+        { t: 'The Parents Go', d: "Two funerals, a house to empty, and the strange orphan feeling of being the oldest generation.", e: { health:-8, rep:+5 } },
+        { t: 'A Quiet Promotion', d: "Recognition arrives late, in the form of a title and a modest increase, and it is enough.", e: { wealth:+13, rep:+6 } }
+      ]
+    },
+    choices: [
+      {
+        age: 16, t: 'The Safe Path or the Dream',
+        d: "Everyone has an opinion. University means debt and a door. Working now means money and no door. You have to pick.",
+        a: { label: 'Go to university', sub: 'Debt now, doors later', e: { wealth:-15, rep:+14, health:-2 },
+             r: "You go. The debt is real and the library is warm, and you meet people who change what you believe is possible." },
+        b: { label: 'Start working now', sub: 'Money in hand, options narrow', e: { wealth:+11, health:-3, rep:-3 },
+             r: "You start working. The first paycheck feels like freedom. The ceiling above you is invisible, but it is there." }
+      },
+      {
+        age: 20, t: 'The Career or the Road',
+        d: "Your manager is hinting at a promotion. Your best friend is buying a one-way ticket and asking if you want in.",
+        a: { label: 'Chase the promotion', sub: 'Security compounds', e: { wealth:+17, health:-9, rep:+6 },
+             r: "You stay. Two years later you are indispensable, exhausted, and slightly richer than everyone you know." },
+        b: { label: 'Buy the ticket', sub: 'You will remember this', e: { health:+7, wealth:-9, rep:+9 },
+             r: "You go. You come back with no money, three languages, and a set of stories that will keep you warm for decades." }
+      },
+      {
+        age: 25, t: 'Settle or Wander',
+        d: "The deposit is saved. The relationship is good. The flat is small and the mortgage is long. Someone at work has just quit to sail the Atlantic.",
+        a: { label: 'Settle down', sub: 'Roots, keys, and a fixed address', e: { wealth:+15, rep:+11, health:-3 },
+             r: "You settle. The flat fills with furniture and arguments and, eventually, a life that fits you." },
+        b: { label: 'Keep moving', sub: 'Nothing ties you yet', e: { health:+5, wealth:-5, rep:+3 },
+             r: "You keep moving. You are thirty before you own anything that cannot fit in a car. You do not regret it, mostly." }
+      },
+      {
+        age: 30, t: 'The Offer',
+        d: "A startup wants you, at half the security and twice the upside. Your current job is dull, safe, and pays the rent.",
+        a: { label: 'Take the risk', sub: 'High variance, high ceiling', e: { wealth:+26, health:-12, rep:+10 },
+             r: "You jump. For eighteen months you are unbearable and exhausted. Then the round closes and everything changes." },
+        b: { label: 'Stay the course', sub: 'Steady, predictable, fine', e: { wealth:+7, health:+5, rep:+3 },
+             r: "You stay. You sleep well. You wonder sometimes, in a mild and untroubling way, what the other road looked like." }
+      },
+      {
+        age: 35, t: 'Family or Freedom',
+        d: "The question arrives without warning, as it does. Everything from here narrows, or everything from here opens — depending who you ask.",
+        a: { label: 'Build a family', sub: 'Dependents and descendants', e: { rep:+15, wealth:-13, health:-4 },
+             r: "You build it. There are years you would not wish on anyone, and a person at the table who makes all of them worth it." },
+        b: { label: 'Keep your freedom', sub: 'Your time is your own', e: { wealth:+11, health:+6, rep:-2 },
+             r: "You keep your freedom. Your time is entirely yours. Some evenings that is the whole of the point, and some evenings it is not." }
+      }
+    ]
+  }
+};
+
+/* ============================================================
+   2. ACHIEVEMENTS
+   ============================================================ */
+const ACHIEVEMENTS = [
+  { id:'infant',  icon:'👶', name:'Tragic Infant',        desc:'Die before turning 5',                              check:s => s.age < 5 },
+  { id:'child',   icon:'🕯️', name:'Child of Sorrow',       desc:'Die before turning 15',                             check:s => s.age < 15 },
+  { id:'plague',  icon:'🗡️', name:'Plague Survivor',       desc:'Reach age 40 in the Medieval era',                  check:s => s.themeId === 'medieval'  && s.age >= 40 },
+  { id:'mill',    icon:'🎩', name:'Industrial Survivor',   desc:'Reach age 40 in the Victorian era',                 check:s => s.themeId === 'victorian' && s.age >= 40 },
+  { id:'century', icon:'🌍', name:'Century Club',          desc:'Reach age 85 in the Modern era',                    check:s => s.themeId === 'modern'    && s.age >= 85 },
+  { id:'rich',    icon:'💎', name:"Fortune's Child",       desc:'Die with Wealth 85+',                               check:s => s.wealth >= 85 },
+  { id:'broke',   icon:'🪙', name:'The Invisible Man',     desc:'Die with Wealth under 10 and Reputation under 15',  check:s => s.wealth < 10 && s.rep < 15 },
+  { id:'beloved', icon:'🌟', name:'Beloved by Thousands',  desc:'Die with Reputation 85+',                           check:s => s.rep >= 85 },
+  { id:'miracle', icon:'✨', name:'Miraculous Recovery',   desc:'Survive a death with the Mercy Pass',               check:s => s.mercyUsed },
+  { id:'capped',  icon:'🕰️', name:'Outlived the Odds',     desc:'Reach the maximum age of your era',                 check:s => s.age >= s.theme.maxAge }
+];
+
+const STORAGE_KEY = '1in100b_unlocked_v2';
+
+function getUnlockedIds() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+function setUnlockedIds(ids) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(ids)); } catch(e){}
+}
+function checkNewAchievements(state) {
+  const unlocked = getUnlockedIds();
+  const newly = [];
+  ACHIEVEMENTS.forEach(a => {
+    if (!unlocked.includes(a.id) && a.check(state)) {
+      unlocked.push(a.id);
+      newly.push(a);
+    }
+  });
+  setUnlockedIds(unlocked);
+  return newly;
+}
+
+function renderShelf() {
+  const unlocked = getUnlockedIds();
+  const grid = $('badgeGrid');
+  grid.innerHTML = ACHIEVEMENTS.map(a => {
+    const on = unlocked.includes(a.id);
+    return `<span class="badge ${on ? 'on' : 'off'}">
+      <span class="bi">${a.icon}</span>${a.name}
+    </span>`;
+  }).join('');
+}
+
+/* ============================================================
+   3. GAME STATE
+   ============================================================ */
+const state = {
+  themeId: null,
+  theme: null,
+  name: '',
+  age: 0,
+  health: 100,
+  wealth: 0,
+  rep: 0,
+  status: '',
+  location: '',
+  originLabel: '',
+  alive: true,
+  mercyUsed: false,
+  finished: false,
+  chronicle: [],
+  peers: [],
+  usedChoices: new Set(),
+  lastEvent: null,
+  pendingChoice: null,
+  epitaph: '',
+  busy: false
+};
+
+/* ============================================================
+   4. DOM REFS
+   ============================================================ */
+const $ = id => document.getElementById(id);
+
+const screenSelect = $('screen-select');
+const screenDraw   = $('screen-draw');
+const screenLife   = $('screen-life');
+
+const themeGrid  = $('themeGrid');
+const btnRoll    = $('btnRoll');
+const rollHint   = $('rollHint');
+const peerGrid   = $('peerGrid');
+const btnBegin   = $('btnBegin');
+const idCard     = $('idCard');
+const eventImage = $('eventImage');
+const statGrid   = $('statGrid');
+const chronicleEl= $('chronicle');
+const chronCount = $('chronCount');
+const btnNext    = $('btnNext');
+
+const choiceModal = $('choiceModal');
+const choiceTitle = $('choiceTitle');
+const choiceDesc  = $('choiceDesc');
+const choiceBtns  = $('choiceBtns');
+
+const mercyModal  = $('mercyModal');
+const btnMiracle  = $('btnMiracle');
+const btnAcceptFate = $('btnAcceptFate');
+
+const deathModal  = $('deathModal');
+const deathCard   = $('deathCard');
+
+/* ============================================================
+   5. SCREEN HELPERS
+   ============================================================ */
+function showScreen(el) {
+  [screenSelect, screenDraw, screenLife].forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+/* ============================================================
+   6. THEME SELECTION
+   ============================================================ */
+function buildThemeGrid() {
+  themeGrid.innerHTML = '';
+  Object.values(THEMES).forEach(theme => {
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    card.dataset.id = theme.id;
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.innerHTML = `
+      <div class="tc-cover" style="background-image:url('${theme.images.cover}')"></div>
+      <div class="tc-body">
+        <span class="tc-icon">${theme.icon}</span>
+        <div class="tc-year">${theme.year}</div>
+        <div class="tc-name">${theme.name}</div>
+        <div class="tc-desc">${theme.desc}</div>
+        <div class="tc-traits">
+          ${theme.traits.map(t => `<span>${t}</span>`).join('')}
+        </div>
+      </div>
+    `;
+    const select = () => {
+      document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      state.themeId = theme.id;
+      btnRoll.disabled = false;
+      rollHint.textContent = theme.year + ' — destiny is waiting';
+    };
+    card.addEventListener('click', select);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); }
+    });
+    themeGrid.appendChild(card);
+  });
+}
+
+/* ============================================================
+   7. NAME + ORIGIN
+   ============================================================ */
+function makeName(theme) {
+  const g = Math.random() < 0.5 ? 'male' : 'female';
+  return pick(theme.names[g]) + ' ' + pick(theme.names.surname);
+}
+
+function randomLocation(theme) {
+  if (theme.id === 'modern') return weightedPick(MODERN_COUNTRIES).n;
+  return pick(theme.locations);
+}
+
+/* ============================================================
+   8. THE DRAW
+   ============================================================ */
+function rollDestiny() {
+  const theme = THEMES[state.themeId];
+  state.theme = theme;
+  state.themeId = theme.id;
+
+  const origin = weightedPick(theme.origins);
+
+  state.name         = makeName(theme);
+  state.status       = origin.status;
+  state.location     = randomLocation(theme);
+  state.originLabel  = origin.label;
+  state.wealth       = origin.wealth;
+  state.rep          = origin.rep;
+  state.health       = theme.startHealth;
+  state.age          = 0;
+  state.alive        = true;
+  state.mercyUsed    = false;
+  state.chronicle    = [];
+  state.usedChoices  = new Set();
+  state.lastEvent    = null;
+  state.pendingChoice= null;
+  state.finished     = false;
+  state.busy         = false;
+  state.epitaph      = '';
+
+  const peers = [];
+  for (let i = 0; i < 3; i++) {
+    const po = weightedPick(theme.origins);
+    peers.push({
+      name: makeName(theme),
+      origin: po.label,
+      status: po.status,
+      location: randomLocation(theme),
+      lifespan: Math.max(0, Math.round(theme.medianAge + gaussRand() * theme.spread))
+    });
+  }
+  state.peers = peers;
+
+  renderDraw();
+  showScreen(screenDraw);
+}
+
+function renderDraw() {
+  const theme = state.theme;
+  peerGrid.innerHTML = '';
+
+  const youCard = document.createElement('div');
+  youCard.className = 'peer you';
+  youCard.style.animationDelay = '0s';
+  youCard.innerHTML = `
+    <div class="peer-tag">✦ You</div>
+    <div class="peer-name">${state.name}</div>
+    <div class="peer-row"><b>Born</b><span>${state.location}, ${theme.year}</span></div>
+    <div class="peer-row"><b>Origin</b><span>${state.originLabel}</span></div>
+    <div class="peer-row"><b>Class</b><span>${state.status}</span></div>
+  `;
+  peerGrid.appendChild(youCard);
+
+  state.peers.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'peer';
+    el.style.animationDelay = (0.09 * (i + 1)) + 's';
+    el.innerHTML = `
+      <div class="peer-tag">Same Second · #${i + 1}</div>
+      <div class="peer-name">${p.name}</div>
+      <div class="peer-row"><b>Born</b><span>${p.location}</span></div>
+      <div class="peer-row"><b>Origin</b><span>${p.origin}</span></div>
+      <div class="peer-row"><b>Class</b><span>${p.status}</span></div>
+    `;
+    peerGrid.appendChild(el);
+  });
+}
+
+/* ============================================================
+   9. TIME JUMP SPAN
+   ============================================================ */
+function spanForAge(age) {
+  if (age <= 2)  return 3;     // 0 -> 3
+  if (age <= 5)  return 3;     // 3 -> 6
+  if (age <= 15) return 4;     // 6 -> 10 -> 14 -> (16)
+  if (age <= 25) return 5;     // 16 -> 20 -> 25
+  if (age <= 45) return 5;     // 30 -> 35 -> 40 -> 45
+  return 10;                    // 46 -> 56 -> 66 -> 76 -> 86
+}
+
+function projectedSpan() {
+  if (!state.theme) return 1;
+  const fromAge = state.age;
+  let span = spanForAge(fromAge);
+  let targetAge = fromAge + span;
+  const next = nextPendingChoice();
+  if (next && targetAge >= next.age) targetAge = next.age;
+  return targetAge - fromAge;
+}
+
+function nextPendingChoice() {
+  if (!state.theme) return null;
+  return state.theme.choices
+    .filter(c => c.age > state.age && !state.usedChoices.has(c.age))
+    .sort((a, b) => a.age - b.age)[0] || null;
+}
+
+/* ============================================================
+   10. MORTALITY MODEL
+   ============================================================ */
+function deathChance(age, health, theme) {
+  const m = theme.mortality;
+  let base;
+  if (age <= 5)       base = m.infant;
+  else if (age <= 15) base = m.child;
+  else if (age <= 35) base = m.youth;
+  else                base = m.adult;
+
+  if (age > theme.seniorThreshold) {
+    const over = (age - theme.seniorThreshold) / 10;
+    base += Math.pow(over, 1.8) * 0.07;
+  }
+
+  const healthFactor = 1 + (100 - health) / 90;
+  base *= healthFactor;
+
+  return Math.min(base, 0.97);
+}
+
+function yearlyDrift(age) {
+  if (age <= 15)      state.health += 2.5;
+  else if (age <= 35) state.health += 0.5;
+  else if (age <= 55) state.health -= 1.5;
+  else                state.health -= 3;
+}
+
+/* ============================================================
+   11. ADVANCE TIME — DYNAMIC JUMPS WITH FORCED INTERRUPT
+   ============================================================ */
+function advanceTime() {
+  if (!state.alive || state.pendingChoice || state.busy || state.finished) return;
+
+  const theme = state.theme;
+  const fromAge = state.age;
+
+  let targetAge = fromAge + spanForAge(fromAge);
+  const next = nextPendingChoice();
+  if (next && targetAge >= next.age) targetAge = next.age;
+  if (targetAge > theme.maxAge + 20) targetAge = theme.maxAge + 20;
+
+  // ---- Year-by-year simulation with forced interrupt ----
+  let diedAt = null;
+  for (let a = fromAge + 1; a <= targetAge; a++) {
+    state.age = a;
+    yearlyDrift(a);
+    state.health = clamp(state.health);
+
+    if (state.health <= 0 || Math.random() < deathChance(a, state.health, theme)) {
+      diedAt = a;
+      break;
+    }
+  }
+
+  state.health = clamp(state.health);
+  state.wealth = clamp(state.wealth);
+  state.rep    = clamp(state.rep);
+
+  if (diedAt !== null) {
+    renderStats();
+    updateEventImage();
+    triggerDeath();
+    return;
+  }
+
+  // ---- Apply narrative event for the reached age ----
+  const atChoiceAge = next && state.age === next.age;
+
+  if (!atChoiceAge) {
+    const ev = pickEventForAge(state.age);
+    applyEffects(ev.e);
+    addChronicle(state.age, ev.t, ev.d, ev.e, null);
+    state.health = clamp(state.health);
+    state.wealth = clamp(state.wealth);
+    state.rep    = clamp(state.rep);
+  } else {
+    // Time-jump log entry describing the passage of years
+    const years = state.age - fromAge;
+    if (years > 1) {
+      addChronicle(
+        state.age,
+        `The Years Pass`,
+        `${years} years slip past in the quiet accumulation of ordinary days. The world changes its mind about a great many things; you change your mind about a few.`,
+        null,
+        'jump'
+      );
+    }
+  }
+
+  renderStats();
+  updateEventImage();
+  updateAdvanceButton();
+
+  if (atChoiceAge) {
+    state.pendingChoice = next;
+    state.usedChoices.add(next.age);
+    openChoice(next);
+  }
+}
+
+function pickEventForAge(age) {
+  const pools = state.theme.pools;
+  let pool;
+  if (age <= 5)       pool = pools.early;
+  else if (age <= 15) pool = pools.growth;
+  else if (age <= 35) pool = pools.prime;
+  else                pool = pools.elder;
+
+  let ev = pick(pool);
+  let guard = 0;
+  while (ev.t === state.lastEvent && guard++ < 12) ev = pick(pool);
+  state.lastEvent = ev.t;
+  return ev;
+}
+
+function applyEffects(e) {
+  if (!e) return;
+  if (e.health) state.health = clamp(state.health + e.health);
+  if (e.wealth) state.wealth = clamp(state.wealth + e.wealth);
+  if (e.rep)    state.rep    = clamp(state.rep + e.rep);
+}
+
+/* ============================================================
+   12. ID CARD / STATS / IMAGE
+   ============================================================ */
+function renderIdCard() {
+  const theme = state.theme;
+  idCard.innerHTML = `
+    <div class="id-banner" style="background-image:url('${theme.images.cover}')"></div>
+    <div class="id-content">
+      <div class="id-name">${state.name}</div>
+      <div class="id-origin">${state.originLabel}</div>
+      <div class="id-meta">
+        <span class="chip gold">${state.status}</span>
+        <span class="chip">${state.location}</span>
+        <span class="chip">${theme.year}</span>
+        <span class="chip">Life ceiling ≈ ${theme.maxAge}</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderStats() {
+  const h = Math.round(clamp(state.health));
+  const w = Math.round(clamp(state.wealth));
+  const r = Math.round(clamp(state.rep));
+
+  statGrid.innerHTML = `
+    <div class="stat">
+      <div class="label">Age</div>
+      <div class="val">${state.age}<small>yr</small></div>
+      <div class="bar"><i style="width:${Math.min(100, (state.age / state.theme.maxAge) * 100)}%;background:linear-gradient(90deg,#5b5f6a,#9aa0ac)"></i></div>
+    </div>
+    <div class="stat hp ${h < 35 ? 'low' : ''}">
+      <div class="label">Health</div>
+      <div class="val">${h}</div>
+      <div class="bar"><i style="width:${h}%"></i></div>
+    </div>
+    <div class="stat wl">
+      <div class="label">Wealth</div>
+      <div class="val">${w}</div>
+      <div class="bar"><i style="width:${w}%"></i></div>
+    </div>
+    <div class="stat rp">
+      <div class="label">Reputation</div>
+      <div class="val">${r}</div>
+      <div class="bar"><i style="width:${r}%"></i></div>
+    </div>
+  `;
+
+  const chip = idCard.querySelector('.chip.gold');
+  if (chip) chip.textContent = state.status;
+
+  chronCount.textContent = 'Year ' + state.age;
+}
+
+function updateEventImage() {
+  if (!state.theme) return;
+  const imgs = state.theme.images.events;
+  const a = state.age;
+  let idx = 0;
+  if (a <= 5)        idx = 0;
+  else if (a <= 15)  idx = 1;
+  else if (a <= 35)  idx = 2;
+  else               idx = 3;
+  const url = imgs[idx % imgs.length];
+  const caption = a <= 5 ? 'Infancy' : a <= 15 ? 'Childhood & Youth' : a <= 35 ? 'The Prime of Life' : 'The Later Years';
+
+  eventImage.style.backgroundImage = `url("${url}")`;
+  eventImage.innerHTML = `<div class="ei-caption">${caption}</div>`;
+  eventImage.classList.add('visible');
+}
+
+function updateAdvanceButton() {
+  if (!state.alive || state.finished) {
+    btnNext.disabled = true;
+    btnNext.innerHTML = 'The End';
+    return;
+  }
+  if (state.pendingChoice) {
+    btnNext.disabled = true;
+    btnNext.innerHTML = 'Awaiting Choice';
+    return;
+  }
+  const span = projectedSpan();
+  btnNext.disabled = false;
+  btnNext.innerHTML = `Advance Time <span class="btn-sub">+${span} yr${span === 1 ? '' : 's'}</span>`;
+}
+
+/* ============================================================
+   13. CHRONICLE
+   ============================================================ */
+function effectTags(e) {
+  if (!e) return '';
+  const parts = [];
+  if (e.health) parts.push(`<span class="eff ${e.health > 0 ? 'pos' : 'neg'}">${e.health > 0 ? '+' : ''}${e.health} Health</span>`);
+  if (e.wealth) parts.push(`<span class="eff ${e.wealth > 0 ? 'pos' : 'neg'}">${e.wealth > 0 ? '+' : ''}${e.wealth} Wealth</span>`);
+  if (e.rep)    parts.push(`<span class="eff ${e.rep > 0 ? 'pos' : 'neg'}">${e.rep > 0 ? '+' : ''}${e.rep} Reputation</span>`);
+  return parts.length ? `<div class="effects">${parts.join('')}</div>` : '';
+}
+
+function addChronicle(age, title, text, effects, kind) {
+  state.chronicle.push({ age, title, text, effects, kind });
+  const el = document.createElement('div');
+  el.className = 'entry' + (kind ? ' ' + kind : '');
+  el.innerHTML = `
+    <div class="entry-head">
+      <span class="entry-age">Age ${age}</span>
+      <span class="entry-title">${title}</span>
+    </div>
+    <p class="entry-text">${text}</p>
+    ${effectTags(effects)}
+  `;
+  chronicleEl.appendChild(el);
+  requestAnimationFrame(() => {
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+}
+
+/* ============================================================
+   14. CHOICE MODAL
+   ============================================================ */
+function openChoice(choice) {
+  choiceTitle.textContent = choice.t;
+  choiceDesc.textContent  = choice.d;
+  choiceBtns.innerHTML = '';
+
+  [choice.a, choice.b].forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = `<b>${opt.label}</b><span>${opt.sub}</span>`;
+    btn.addEventListener('click', () => resolveChoice(choice, opt));
+    choiceBtns.appendChild(btn);
+  });
+
+  updateAdvanceButton();
+  choiceModal.classList.add('show');
+}
+
+function resolveChoice(choice, opt) {
+  choiceModal.classList.remove('show');
+  state.pendingChoice = null;
+
+  applyEffects(opt.e);
+  if (opt.status) state.status = opt.status;
+
+  addChronicle(state.age, choice.t + ' — ' + opt.label, opt.r, opt.e, 'choice');
+
+  // A choice can also kill (health drop)
+  state.health = clamp(state.health);
+  state.wealth = clamp(state.wealth);
+  state.rep    = clamp(state.rep);
+
+  renderStats();
+  updateEventImage();
+  updateAdvanceButton();
+
+  if (state.health <= 0) {
+    triggerDeath();
+  }
+}
+
+/* ============================================================
+   15. DEATH & MERCY
+   ============================================================ */
+function triggerDeath() {
+  state.alive = false;
+  updateAdvanceButton();
+
+  if (state.age < 35 && !state.mercyUsed) {
+    mercyModal.classList.add('show');
+  } else {
+    endGame();
+  }
+}
+
+btnMiracle.addEventListener('click', () => {
+  mercyModal.classList.remove('show');
+  state.mercyUsed = true;
+  state.alive = true;
+  state.health = Math.max(58, state.health);
+  state.health = clamp(state.health);
+  state.rep = clamp(state.rep + 4);
+
+  addChronicle(
+    state.age,
+    'A Miracle',
+    'The fever breaks at dawn. The physician calls it luck; the priest calls it Providence. You call it a second chance, and you do not waste it.',
+    { health: +20, rep: +4 },
+    'miracle'
+  );
+
+  renderStats();
+  updateAdvanceButton();
+
+  // If the interrupted death happened exactly at a choice age, surface it now
+  const pending = state.theme.choices.find(
+    c => c.age === state.age && !state.usedChoices.has(c.age)
+  );
+  if (pending) {
+    state.pendingChoice = pending;
+    state.usedChoices.add(pending.age);
+    openChoice(pending);
+  }
+});
+
+btnAcceptFate.addEventListener('click', () => {
+  mercyModal.classList.remove('show');
+  endGame();
+});
+
+/* ============================================================
+   16. DYNAMIC EPITAPH GENERATOR
+   ============================================================ */
+function generateEpitaph(s) {
+  const w = s.wealth;
+  const r = s.rep;
+  const a = s.age;
+
+  if (a < 5) return pick([
+    "A brief light. The world didn't quite learn your name.",
+    "Born, blinked, and gone. The universe didn't notice.",
+    "You existed for a moment. The moment was enough.",
+    "Your whole life fit in a paragraph, and the paragraph was short."
+  ]);
+
+  if (a < 15) return pick([
+    "A childhood ended before the credits.",
+    "You never made it to the interesting part.",
+    "Someone was supposed to protect you. Someone failed.",
+    "A story with no second act."
+  ]);
+
+  if (a < 35 && w >= 75) return pick([
+    "Died young, rich, and remarkably unremembered.",
+    "Left behind a fortune and absolutely no explanations.",
+    "Money can't buy time, as it turns out. Someone should have told you.",
+    "The heirs are already fighting. You're not even cold."
+  ]);
+
+  if (w >= 70 && a >= 55) return pick([
+    "Rich enough to be remembered. Dead enough to be irrelevant.",
+    "Built an empire. Left it to people who will spend it badly.",
+    "Money, it turns out, does not come with you.",
+    "Died comfortable. Went out complaining."
+  ]);
+
+  if (w < 20 && r >= 60) return pick([
+    "Poor in coin, rich in legend.",
+    "You gave everything away and everyone kept it.",
+    "Sainted by the neighbours. Slightly annoyed by it.",
+    "No money. Plenty of stories. A fair trade."
+  ]);
+
+  if (w < 20 && r < 25) return pick([
+    "The world didn't notice. The world rarely does.",
+    "You lived quietly. You died quietly. The rent was due.",
+    "History records your absence with the same enthusiasm as your presence.",
+    "A life without footnotes."
+  ]);
+
+  if (r >= 75) return pick([
+    "Beloved by strangers. Envied by neighbours.",
+    "The obituary was better than the life, as obituaries often are.",
+    "Remembered by many. Known by few.",
+    "A name that outlived the person it belonged to."
+  ]);
+
+  if (a >= 80) return pick([
+    "Outlived the century. Outlived the excuses.",
+    "Saw it all. Complained about most of it.",
+    "Outlasted the doctors, the naysayers, and one entire century.",
+    "Living proof that spite is a preservative."
+  ]);
+
+  return pick([
+    "Left a dent. The size of which is debatable.",
+    "Nothing extraordinary. Which is its own kind of miracle.",
+    "You woke up every morning. That was the achievement.",
+    "A life of ordinary days, which is the rarest thing of all.",
+    "Not a hero. Not a villain. Not a footnote.",
+    "You survived long enough to become a cautionary tale."
+  ]);
+}
+
+/* ============================================================
+   17. FUNERAL CARD / GAME OVER
+   ============================================================ */
+function survivalPercentile(age, theme) {
+  const z = (age - theme.medianAge) / theme.spread;
+  const p = 1 / (1 + Math.exp(-z));
+  return Math.round(clamp(p * 100, 0.1, 99.9) * 10) / 10;
+}
+
+function endGame() {
+  if (state.finished) return;
+  state.finished = true;
+  state.alive = false;
+  updateAdvanceButton();
+
+  const theme  = state.theme;
+  const pct    = survivalPercentile(state.age, theme);
+  const startY = theme.id === 'medieval' ? 1348 : theme.id === 'victorian' ? 1850 : 2024;
+  const endY   = startY + state.age;
+  const dateLine = `${startY} — ${endY}`;
+
+  state.epitaph = generateEpitaph(state);
+  const newlyUnlocked = checkNewAchievements(state);
+  renderShelf();
+
+  const peersHTML = state.peers.map(p => `
+    <div class="pf-item">
+      <div>
+        <div class="pf-n">${p.name}</div>
+        <div class="pf-l">${p.location} · ${p.status}</div>
+      </div>
+      <div class="pf-d">${p.lifespan} yrs</div>
+    </div>
+  `).join('');
+
+  const newBadgesHTML = newlyUnlocked.length ? `
+    <div class="unlocked-list">
+      <div class="ul-title">✦ New Achievements ✦</div>
+      ${newlyUnlocked.map(a => `
+        <div class="ul-item">
+          <span class="ui-icon">${a.icon}</span>
+          <div><b>${a.name}</b>${a.desc}</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+
+  deathCard.innerHTML = `
+    <div class="funeral-cross">☩</div>
+    <div class="funeral-eyebrow">In Memoriam</div>
+    <div class="funeral-name">${state.name}</div>
+    <div class="funeral-dates">${dateLine}</div>
+    <div class="funeral-age">Aged ${state.age} ${state.age === 1 ? 'year' : 'years'}</div>
+
+    <div class="rule"><i>✦</i></div>
+
+    <div class="funeral-rows">
+      <div class="f-row"><span class="k">Origin</span><span class="v">${state.originLabel}</span></div>
+      <div class="f-row"><span class="k">Died As</span><span class="v">${state.status} · ${state.location}</span></div>
+      <div class="f-row"><span class="k">Final Health</span><span class="v">${Math.round(clamp(state.health))} / 100</span></div>
+      <div class="f-row"><span class="k">Wealth</span><span class="v">${Math.round(clamp(state.wealth))} / 100</span></div>
+      <div class="f-row"><span class="k">Reputation</span><span class="v">${Math.round(clamp(state.rep))} / 100</span></div>
+      <div class="f-row"><span class="k">Era</span><span class="v">${theme.name} · ${theme.year}</span></div>
+    </div>
+
+    <p class="funeral-quote">“${state.epitaph}”</p>
+
+    <div class="pct-block">
+      <div class="pct-num">${pct}%</div>
+      <div class="pct-label">You survived longer than ${pct}% of people in this era</div>
+    </div>
+
+    <div class="peers-final">
+      <div class="pf-title">Your Three Same-Second Peers</div>
+      ${peersHTML}
+    </div>
+
+    ${newBadgesHTML}
+
+    <div class="funeral-foot">Take a screenshot to keep this card</div>
+
+    <div class="funeral-actions">
+      <button class="btn btn-primary" id="btnShare">Copy Fate to Clipboard</button>
+      <div class="share-feedback" id="shareFeedback">✓ Copied to clipboard</div>
+      <button class="btn btn-ghost" id="btnRestart">Roll Another Life</button>
+    </div>
+  `;
+
+  deathModal.classList.add('show');
+
+  $('btnShare').addEventListener('click', copyShareText);
+  $('btnRestart').addEventListener('click', () => {
+    deathModal.classList.remove('show');
+    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('selected'));
+    btnRoll.disabled = true;
+    rollHint.textContent = 'Select an era above';
+    state.themeId = null;
+    showScreen(screenSelect);
+  });
+}
+
+/* ============================================================
+   18. COPY FATE TO CLIPBOARD (Wordle-style)
+   ============================================================ */
+function buildShareText() {
+  const theme = state.theme;
+  const pct   = survivalPercentile(state.age, theme);
+
+  const bar = (v) => {
+    const n = Math.max(0, Math.min(10, Math.round(v / 10)));
+    return '🟩'.repeat(n) + '⬛'.repeat(10 - n);
+  };
+
+  const eraIcon = theme.icon;
+  const eraName = theme.name.replace(/&amp;/g, '&');
+
+  return `${eraIcon} 1 in 100 Billion — ${eraName} (${theme.year})
+
+👤 ${state.name}
+📍 ${state.location} · ${state.status}
+⏳ Aged ${state.age} · Outlived ${pct}% of the era
+
+🩺 ${bar(state.health)}
+💰 ${bar(state.wealth)}
+🏛️ ${bar(state.rep)}
+
+"${state.epitaph}"
+
+#1in100Billion #ExistentialLottery`;
+}
+
+async function copyShareText() {
+  const text = buildShareText();
+  const fb = $('shareFeedback');
+  try {
+    await navigator.clipboard.writeText(text);
+    if (fb) { fb.classList.add('show'); setTimeout(() => fb.classList.remove('show'), 2200); }
+  } catch (err) {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      if (fb) { fb.classList.add('show'); setTimeout(() => fb.classList.remove('show'), 2200); }
+    } catch (e) {
+      if (fb) { fb.textContent = 'Copy failed — select manually'; fb.classList.add('show'); }
+    }
+    document.body.removeChild(ta);
+  }
+}
+
+/* ============================================================
+   19. BEGIN LIFE
+   ============================================================ */
+function beginLife() {
+  showScreen(screenLife);
+  renderIdCard();
+  renderStats();
+  updateEventImage();
+
+  chronicleEl.innerHTML = '';
+  addChronicle(
+    0,
+    'Birth',
+    `You are born in ${state.location}, in the year ${state.theme.year}. ${state.originLabel}. You are not asked whether you consent.`,
+    null,
+    null
+  );
+
+  updateAdvanceButton();
+}
+
+/* ============================================================
+   20. WIRE UP
+   ============================================================ */
+buildThemeGrid();
+renderShelf();
+
+btnRoll.addEventListener('click', rollDestiny);
+btnBegin.addEventListener('click', beginLife);
+btnNext.addEventListener('click', advanceTime);
+
+document.addEventListener('keydown', e => {
+  if (!screenLife.classList.contains('active')) return;
+  if (choiceModal.classList.contains('show') || mercyModal.classList.contains('show') || deathModal.classList.contains('show')) return;
+  if (e.key === ' ' && document.activeElement.tagName !== 'BUTTON') {
+    e.preventDefault();
+    advanceTime();
+  }
+});
+</script>
+</body>
+</html>
